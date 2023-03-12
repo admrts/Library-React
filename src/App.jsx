@@ -1,11 +1,13 @@
 import React from "react";
-import { Navbar, Welcome } from "./components";
+import { Navbar, Welcome, LoginPage, SignupPage } from "./components";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Welcome />
+      {/* <Welcome />  */}
+      <LoginPage />
+      <SignupPage />
     </div>
   );
 }
