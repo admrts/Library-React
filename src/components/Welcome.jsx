@@ -12,7 +12,7 @@ function Welcome() {
     navigate("signup");
   };
   return (
-    <Container sx={{ height: "70vh" }}>
+    <Container sx={{ height: { xs: "60vh", md: "90vh" } }}>
       <Stack
         alignItems="center"
         justifyContent="center"
