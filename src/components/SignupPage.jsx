@@ -1,10 +1,10 @@
 import React from "react";
-import { Form } from "./";
+import { AuthForm } from "./";
 
 function SignupPage() {
   return (
     <div>
-      <Form header={"Sign Up"} />
+      <AuthForm header={"Sign Up"} />
     </div>
   );
 }
