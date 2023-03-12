@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Container, Stack, Button } from "@mui/material";
+import Logo from "../assets/logo.png";
 
 function Navbar() {
   return (
@@ -9,7 +10,9 @@ function Navbar() {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Box>Library Logo</Box>
+        <Box sx={{ height: "50px" }}>
+          <img src={Logo} alt="" style={{ height: "100%" }} />
+        </Box>
         <Box sx={{ display: "flex", gap: "5px" }}>
           <Button variant="outlined">Log In</Button>
           <Button variant="contained">Sign Up</Button>
