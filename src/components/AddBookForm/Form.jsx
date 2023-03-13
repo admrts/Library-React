@@ -9,6 +9,9 @@ import {
 } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
+import { addBook } from "../../firebase";
+
+import { nanoid } from "@reduxjs/toolkit";
 
 function Form() {
   const [bookName, setBookName] = useState("");
@@ -18,8 +21,14 @@ function Form() {
 
   const navigate = useNavigate();
 
-  const addClick = () => {
-    console.log(bookName + author + pages);
+  const addClick = async () => {
+    await addBook({
+      bookName,
+      author,
+      pages,
+      about,
+      id: nanoid(),
+    });
   };
   const handleClick = () => {
     navigate("/");
