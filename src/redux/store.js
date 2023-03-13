@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSliceReducer from "./authSlice";
+import auth from "./authSlice";
+import books from "./booksSlice";
 
 const store = configureStore({
   reducer: {
-    auth: authSliceReducer,
+    auth,
+    books,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

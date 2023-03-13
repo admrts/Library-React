@@ -6,12 +6,14 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import store from "./redux/store";
 import {
   login as loginHandle,
   logout as logoutHandle,
 } from "./redux/authSlice";
 import toast from "react-hot-toast";
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -24,6 +26,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+const db = getFirestore(app);
 export default app;
 
 //  Signup with email
@@ -82,3 +85,18 @@ onAuthStateChanged(auth, (user) => {
     store.dispatch(logoutHandle());
   }
 });
+
+//! Firestore
+
+export const addBook = async (data) => {
+  const collectionWithEmail = auth.currentUser.email;
+  try {
+    const docRef = await addDoc(collection(db, collectionWithEmail), {
+      data,
+    });
+    toast.success("Add book Successfully");
+    return docRef;
+  } catch (e) {
+    toast.error(e);
+  }
+};
