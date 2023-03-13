@@ -23,25 +23,25 @@ function BookDetail() {
       <Stack flexDirection="row" justifyContent="center" mt={3}>
         <Stack alignItems="center">
           <Stack gap={2}>
-            <Stack flexDirection="row">
+            <Stack flexDirection="row" gap={2}>
               <Typography variant="h4" sx={{ textDecoration: "underline" }}>
-                Book Name:
+                Name:
               </Typography>
               <Typography variant="h4">Kumarbaz</Typography>
             </Stack>
-            <Stack flexDirection="row">
+            <Stack flexDirection="row" gap={2}>
               <Typography variant="h4" sx={{ textDecoration: "underline" }}>
                 Author:
               </Typography>
               <Typography variant="h4">Dostoyevski</Typography>
             </Stack>
-            <Stack flexDirection="row">
+            <Stack flexDirection="row" gap={2}>
               <Typography variant="h4" sx={{ textDecoration: "underline" }}>
                 Pages:
               </Typography>
               <Typography variant="h4">180</Typography>
             </Stack>
-            <Stack flexDirection="row">
+            <Stack flexDirection="row" gap={2}>
               <Typography variant="h4" sx={{ textDecoration: "underline" }}>
                 About:
               </Typography>
