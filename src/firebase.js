@@ -6,13 +6,15 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import store from "./redux/store";
 import {
   login as loginHandle,
   logout as logoutHandle,
 } from "./redux/authSlice";
 import toast from "react-hot-toast";
+
+import { appendBooks, clearBooks } from "./redux/booksSlice";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -99,4 +101,12 @@ export const addBook = async (data) => {
   } catch (e) {
     toast.error(e);
   }
+};
+
+export const getData = async (userEmail) => {
+  const querySnapShot = await getDocs(collection(db, userEmail));
+  store.dispatch(clearBooks());
+  querySnapShot.forEach((doc) => {
+    store.dispatch(appendBooks(doc.data().data));
+  });
 };
