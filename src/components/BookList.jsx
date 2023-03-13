@@ -2,10 +2,12 @@ import { Container, Typography, Button, Paper } from "@mui/material";
 import React from "react";
 import { ListHeader } from "./";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 
 function BookList() {
+  const navigate = useNavigate();
   const handleClick = () => {
-    console.log("hello world");
+    navigate("bookdetail");
   };
   return (
     <Container>
