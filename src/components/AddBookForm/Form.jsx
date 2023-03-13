@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Typography, TextField, Box, Button, Container } from "@mui/material";
+import {
+  Typography,
+  TextField,
+  Box,
+  Button,
+  Container,
+  Stack,
+} from "@mui/material";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import { useNavigate } from "react-router-dom";
 
 function Form() {
   const [bookName, setBookName] = useState("");
@@ -7,11 +16,27 @@ function Form() {
   const [pages, setPages] = useState("");
   const [about, setAbout] = useState("");
 
-  const handleClick = () => {
+  const navigate = useNavigate();
+
+  const addClick = () => {
     console.log(bookName + author + pages);
+  };
+  const handleClick = () => {
+    navigate("/");
   };
   return (
     <Container>
+      <Stack flexDirection="row" alignItems="center" gap={1} mt={1}>
+        <ArrowCircleLeftIcon onClick={handleClick} sx={{ cursor: "pointer" }} />
+        <Typography
+          variant="h6"
+          onClick={handleClick}
+          sx={{ cursor: "pointer" }}
+        >
+          Book List
+        </Typography>
+      </Stack>
+
       <form className="form">
         <Box
           sx={{
@@ -52,7 +77,7 @@ function Form() {
             onChange={(e) => setAbout(e.target.value)}
           />
           <Box>
-            <Button variant="contained" onClick={handleClick}>
+            <Button variant="contained" onClick={addClick}>
               Add
             </Button>
           </Box>
