@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   books: [],
-
+  updateBook: false,
   bookDetail: [],
 };
 
@@ -24,9 +24,22 @@ const books = createSlice({
         return data.id === action.payload;
       });
     },
+    updateControl: (state, action) => {
+      if (action.payload === "update") {
+        state.updateBook = true;
+      } else if (action.payload === "addBook") {
+        state.updateBook = false;
+      }
+    },
   },
 });
 
-export const { setBooks, appendBooks, clearBooks, setBookId, bookDetailById } =
-  books.actions;
+export const {
+  setBooks,
+  appendBooks,
+  clearBooks,
+  setBookId,
+  bookDetailById,
+  updateControl,
+} = books.actions;
 export default books.reducer;

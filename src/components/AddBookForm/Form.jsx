@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Typography,
   TextField,
@@ -10,19 +10,32 @@ import {
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
 import { addBook } from "../../firebase";
-
+import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 
 function Form() {
+  const { updateBook, bookDetail } = useSelector((store) => store.books);
+
   const [bookName, setBookName] = useState("");
   const [author, setAuthor] = useState("");
   const [pages, setPages] = useState("");
   const [about, setAbout] = useState("");
+  const [id, setId] = useState("");
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (updateBook) {
+      setBookName(bookDetail[0].bookName);
+      setAuthor(bookDetail[0].author);
+      setPages(bookDetail[0].pages);
+      setAbout(bookDetail[0].about);
+      setId(bookDetail[0].id);
+    }
+  }, [updateBook, bookDetail]);
+
   const addClick = async () => {
-    const id = nanoid();
+    setId(nanoid());
     const asd = await addBook(
       {
         bookName,

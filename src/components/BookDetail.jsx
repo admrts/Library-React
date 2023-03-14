@@ -4,8 +4,11 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { deleteData } from "../firebase";
+import { useDispatch } from "react-redux";
+import { updateControl } from "../redux/booksSlice";
 
 function BookDetail() {
+  const dispatch = useDispatch();
   const { bookDetail } = useSelector((store) => store.books);
 
   const navigate = useNavigate();
@@ -19,6 +22,10 @@ function BookDetail() {
     setTimeout(function () {
       navigate("/");
     }, 2000);
+  };
+  const updateClick = () => {
+    navigate("addbook");
+    dispatch(updateControl("update"));
   };
 
   return (
@@ -47,7 +54,9 @@ function BookDetail() {
           <Button color="error" onClick={deleteClick}>
             Delete
           </Button>
-          <Button color="success">Update</Button>
+          <Button color="success" onClick={updateClick}>
+            Update
+          </Button>
         </Stack>
       </Stack>
       <Stack flexDirection="row" justifyContent="center" mt={3}>
