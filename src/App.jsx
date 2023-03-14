@@ -9,6 +9,7 @@ import {
   BookList,
   Addbook,
   BookDetail,
+  Footer,
 } from "./components";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="bookdetail/addbook" element={<Addbook />} />
         <Route path="bookdetail" element={<BookDetail />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
