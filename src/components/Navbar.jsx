@@ -24,6 +24,9 @@ function Navbar() {
     await logout();
     dispatch(logoutHandle());
   };
+  const profilClick = () => {
+    navigate("profilpage");
+  };
   return (
     <Container sx={{ py: 2, borderBottom: "1px solid lightgray" }}>
       <Stack
@@ -53,6 +56,7 @@ function Navbar() {
                     opacity: [0.6],
                   },
                 }}
+                onClick={profilClick}
               >
                 <PersonIcon /> {user.displayName ?? user.email}
               </Box>
