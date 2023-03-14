@@ -21,6 +21,8 @@ function Form() {
   const [pages, setPages] = useState("");
   const [about, setAbout] = useState("");
   const [id, setId] = useState("");
+  const [buttonName, setButtonName] = useState("");
+  const [header, setHeader] = useState("");
 
   const navigate = useNavigate();
 
@@ -32,11 +34,16 @@ function Form() {
       setPages(bookDetail[0].pages);
       setAbout(bookDetail[0].about);
       setId(bookDetail[0].id);
+      setButtonName("Update");
+      setHeader("Update Book");
+    } else {
+      setButtonName("Add");
+      setHeader("Add Book");
     }
   }, [updateBook, bookDetail, id]);
 
   const addClick = async () => {
-    const asd = await addBook(
+    const createBook = await addBook(
       {
         bookName,
         author,
@@ -46,7 +53,7 @@ function Form() {
       },
       id
     );
-    if (asd) {
+    if (createBook) {
       setBookName("");
       setAuthor("");
       setPages("");
@@ -79,7 +86,7 @@ function Form() {
             width: "70%",
           }}
         >
-          <Typography variant="h4">Add Book</Typography>
+          <Typography variant="h4">{header}</Typography>
           <TextField
             label="Book Name"
             variant="outlined"
@@ -111,7 +118,7 @@ function Form() {
           />
           <Box>
             <Button variant="contained" onClick={addClick}>
-              Add
+              {buttonName}
             </Button>
           </Box>
         </Box>
