@@ -102,13 +102,14 @@ onAuthStateChanged(auth, (user) => {
 export const addBook = async (data, documentId) => {
   const collectionWithEmail = auth.currentUser.email;
   try {
-    const docRef = await setDoc(doc(db, collectionWithEmail, documentId), {
+    await setDoc(doc(db, collectionWithEmail, documentId), {
       data,
     });
     toast.success("Add book Successfully");
-    return docRef;
+    return true;
   } catch (error) {
     toast.error(error);
+    return false;
   }
 };
 

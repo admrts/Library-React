@@ -23,7 +23,7 @@ function Form() {
 
   const addClick = async () => {
     const id = nanoid();
-    await addBook(
+    const asd = await addBook(
       {
         bookName,
         author,
@@ -33,6 +33,12 @@ function Form() {
       },
       id
     );
+    if (asd) {
+      setBookName("");
+      setAuthor("");
+      setPages("");
+      setAbout("");
+    }
   };
   const handleClick = () => {
     navigate("/");
