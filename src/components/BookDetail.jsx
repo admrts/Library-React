@@ -16,7 +16,9 @@ function BookDetail() {
 
   const deleteClick = () => {
     deleteData(bookDetail[0].id);
-    navigate("/");
+    setTimeout(function () {
+      navigate("/");
+    }, 2000);
   };
 
   return (
