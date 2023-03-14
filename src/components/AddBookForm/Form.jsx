@@ -33,7 +33,7 @@ function Form() {
       setAbout(bookDetail[0].about);
       setId(bookDetail[0].id);
     }
-  }, [updateBook, bookDetail]);
+  }, [updateBook, bookDetail, id]);
 
   const addClick = async () => {
     const asd = await addBook(
@@ -51,6 +51,7 @@ function Form() {
       setAuthor("");
       setPages("");
       setAbout("");
+      setId("");
     }
   };
   const handleClick = () => {
