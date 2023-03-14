@@ -5,7 +5,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../firebase";
 import { useSelector } from "react-redux";
-import { setBookId } from "../redux/booksSlice";
+import { bookDetailById } from "../redux/booksSlice";
 import { useDispatch } from "react-redux";
 
 function BookList() {
@@ -15,7 +15,7 @@ function BookList() {
   const navigate = useNavigate();
   const handleClick = (e) => {
     navigate("bookdetail");
-    dispatch(setBookId(e.target.id));
+    dispatch(bookDetailById(e.target.id));
   };
 
   useEffect(() => {
@@ -72,27 +72,6 @@ function BookList() {
           <Typography>Book not found. Please add book</Typography>
         </Paper>
       )}
-      {/* <Paper
-        onClick={handleClick}
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          my: 2,
-          p: 1,
-          cursor: "pointer",
-          borderRadius: "10px",
-          ":hover": {
-            boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-          },
-        }}
-      >
-        <Typography>Book Name</Typography>
-        <Button onClick={handleClick}>
-          <ArrowForwardIcon />
-        </Button>
-      </Paper> */}
     </Container>
   );
 }
