@@ -1,12 +1,10 @@
-import { Container, Stack, Typography, Button, Box } from "@mui/material";
-import React, { useEffect } from "react";
+import { Container, Stack, Typography, Button } from "@mui/material";
+import React from "react";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 
 function BookDetail() {
-  const dispatch = useDispatch();
   const { bookDetail } = useSelector((store) => store.books);
 
   const navigate = useNavigate();
@@ -15,7 +13,6 @@ function BookDetail() {
     console.log(bookDetail);
   };
 
-  useEffect(() => {}, [dispatch]);
   return (
     <Container>
       <Stack
@@ -51,7 +48,7 @@ function BookDetail() {
                 Name:
               </Typography>
               <Typography variant="h4">
-                {bookDetail ? bookDetail[0].bookName : ""}
+                {bookDetail.length > 0 ? bookDetail[0].bookName : ""}
               </Typography>
             </Stack>
             <Stack flexDirection="row" gap={2}>
@@ -59,7 +56,7 @@ function BookDetail() {
                 Author:
               </Typography>
               <Typography variant="h4">
-                {bookDetail ? bookDetail[0].author : ""}
+                {bookDetail.length > 0 ? bookDetail[0].author : ""}
               </Typography>
             </Stack>
             <Stack flexDirection="row" gap={2}>
@@ -67,7 +64,7 @@ function BookDetail() {
                 Pages:
               </Typography>
               <Typography variant="h4">
-                {bookDetail ? bookDetail[0].pages : ""}
+                {bookDetail.length > 0 ? bookDetail[0].pages : ""}
               </Typography>
             </Stack>
             <Stack flexDirection="row" gap={2}>
@@ -75,7 +72,7 @@ function BookDetail() {
                 About:
               </Typography>
               <Typography variant="h4">
-                {bookDetail ? bookDetail[0].about : ""}
+                {bookDetail.length > 0 ? bookDetail[0].about : ""}
               </Typography>
             </Stack>
           </Stack>

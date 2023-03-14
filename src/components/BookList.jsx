@@ -1,6 +1,6 @@
 import { Container, Typography, Button, Paper } from "@mui/material";
 import { useEffect } from "react";
-import { ListHeader } from "./";
+import { ListHeader, Loader } from "./";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../firebase";
@@ -14,13 +14,17 @@ function BookList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = (e) => {
-    navigate("bookdetail");
-    dispatch(bookDetailById(e.target.id));
+    if (e.target.id) {
+      navigate("bookdetail");
+      dispatch(bookDetailById(e.target.id));
+    }
   };
 
   useEffect(() => {
     getData(user.email);
   }, [user.email]);
+
+  if (books.length < 1) return <Loader />;
   return (
     <Container>
       <ListHeader />
@@ -46,8 +50,10 @@ function BookList() {
                 },
               }}
             >
-              <Typography>{book.bookName}</Typography>
-              <Button onClick={handleClick}>
+              <Typography id={book.id} onClick={handleClick}>
+                {book.bookName}
+              </Typography>
+              <Button disabled>
                 <ArrowForwardIcon />
               </Button>
             </Paper>
