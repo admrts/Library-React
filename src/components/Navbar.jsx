@@ -2,13 +2,10 @@ import React from "react";
 import { Box, Container, Stack, Button, Typography } from "@mui/material";
 import Logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import PersonIcon from "@mui/icons-material/Person";
-import { logout as logoutHandle } from "../redux/authSlice";
-import { logout } from "../firebase";
 
 function Navbar() {
-  const dispatch = useDispatch();
   const { user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const loginClick = () => {
@@ -20,10 +17,7 @@ function Navbar() {
   const logoClick = () => {
     navigate("/");
   };
-  const logoutClick = async () => {
-    await logout();
-    dispatch(logoutHandle());
-  };
+
   const profilClick = () => {
     navigate("profilpage");
   };
@@ -61,9 +55,6 @@ function Navbar() {
                 <PersonIcon /> {user.displayName ?? user.email}
               </Box>
             </Typography>
-            <Button variant="contained" color="error" onClick={logoutClick}>
-              Log Out
-            </Button>
           </Box>
         ) : (
           <Box sx={{ display: "flex", gap: "5px" }}>
