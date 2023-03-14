@@ -6,12 +6,10 @@ import { useSelector } from "react-redux";
 import { deleteData } from "../firebase";
 import { useDispatch } from "react-redux";
 import { updateControl } from "../redux/booksSlice";
-import { useAlert } from "react-alert-with-buttons";
 
 function BookDetail() {
   const dispatch = useDispatch();
   const { bookDetail } = useSelector((store) => store.books);
-  const alert = useAlert();
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -20,29 +18,12 @@ function BookDetail() {
   };
 
   const deleteClick = () => {
-    alert.open({
-      message: "This is an alert",
-      buttons: [
-        {
-          label: "OK",
-          onClick: () => {
-            deleteData(bookDetail[0].id);
-            setTimeout(function () {
-              navigate("/");
-            }, 2000);
-            alert.close();
-          },
-          style: { backgroundColor: "red" },
-        },
-        {
-          label: "Cancel",
-          onClick: () => {
-            alert.close();
-          },
-          style: { backgroundColor: "white", color: "black" },
-        },
-      ],
-    });
+    if (window.confirm("This book is deleted. Are you sure ?")) {
+      deleteData(bookDetail[0].id);
+      setTimeout(function () {
+        navigate("/");
+      }, 2000);
+    }
   };
   const updateClick = () => {
     navigate("addbook");
