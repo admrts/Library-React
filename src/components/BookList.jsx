@@ -5,20 +5,22 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../firebase";
 import { useSelector } from "react-redux";
+import { setBookId } from "../redux/booksSlice";
+import { useDispatch } from "react-redux";
 
 function BookList() {
   const { user } = useSelector((store) => store.auth);
   const { books } = useSelector((store) => store.books);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleClick = () => {
+  const handleClick = (e) => {
     navigate("bookdetail");
+    dispatch(setBookId(e.target.id));
   };
 
   useEffect(() => {
-    console.log(user.email);
     getData(user.email);
-    console.log(books);
-  }, [user.email, books]);
+  }, [user.email]);
   return (
     <Container>
       <ListHeader />
@@ -28,6 +30,7 @@ function BookList() {
           return (
             <Paper
               key={book.id}
+              id={book.id}
               onClick={handleClick}
               sx={{
                 display: "flex",
