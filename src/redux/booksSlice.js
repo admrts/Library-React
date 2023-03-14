@@ -4,6 +4,8 @@ const initialState = {
   books: [],
   updateBook: false,
   bookDetail: [],
+  totalBooks: 0,
+  totalPages: 0,
 };
 
 const books = createSlice({
@@ -31,6 +33,13 @@ const books = createSlice({
         state.updateBook = false;
       }
     },
+    updateProfilPage: (state, action) => {
+      state.totalPages = 0;
+      state.totalBooks = state.books.length;
+      state.books.forEach((book) => {
+        state.totalPages += Number(book.pages);
+      });
+    },
   },
 });
 
@@ -41,5 +50,6 @@ export const {
   setBookId,
   bookDetailById,
   updateControl,
+  updateProfilPage,
 } = books.actions;
 export default books.reducer;

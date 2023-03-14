@@ -8,7 +8,7 @@ function footer() {
       bgcolor="white"
       justifyContent="center"
       alignItems="center"
-      position="sticky"
+      position="absolute"
       sx={{
         height: "6vh",
         position: "fixed",

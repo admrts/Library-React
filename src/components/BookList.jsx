@@ -25,7 +25,7 @@ function BookList() {
   }, [user.email]);
 
   return (
-    <Container>
+    <Container sx={{ pb: 7 }}>
       <ListHeader />
 
       {books.length > 0 ? (

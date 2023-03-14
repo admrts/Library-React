@@ -1,14 +1,16 @@
 import { Container, Typography, Stack, Button } from "@mui/material";
-import React from "react";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../firebase";
 import { useDispatch } from "react-redux";
 import { logout as logoutHandle } from "../redux/authSlice";
+import { useSelector } from "react-redux";
 
 function ProfilPage() {
+  const { totalBooks, totalPages } = useSelector((store) => store.books);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleClick = () => {
     navigate("/");
   };
@@ -42,6 +44,24 @@ function ProfilPage() {
         <Button variant="contained" color="error" onClick={logoutClick}>
           Log Out
         </Button>
+      </Stack>
+      <Stack flexDirection="row" justifyContent="center" mt={3}>
+        <Stack alignItems="center">
+          <Stack gap={2}>
+            <Stack flexDirection="row" gap={2}>
+              <Typography variant="h4" sx={{ textDecoration: "underline" }}>
+                Total Books:
+              </Typography>
+              <Typography variant="h4">{totalBooks}</Typography>
+            </Stack>
+            <Stack flexDirection="row" gap={2}>
+              <Typography variant="h4" sx={{ textDecoration: "underline" }}>
+                Total Pages:
+              </Typography>
+              <Typography variant="h4">{totalPages}</Typography>
+            </Stack>
+          </Stack>
+        </Stack>
       </Stack>
     </Container>
   );

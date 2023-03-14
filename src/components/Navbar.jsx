@@ -4,9 +4,12 @@ import Logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PersonIcon from "@mui/icons-material/Person";
+import { useDispatch } from "react-redux";
+import { updateProfilPage } from "../redux/booksSlice";
 
 function Navbar() {
   const { user } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginClick = () => {
     navigate("login");
@@ -19,6 +22,7 @@ function Navbar() {
   };
 
   const profilClick = () => {
+    dispatch(updateProfilPage());
     navigate("profilpage");
   };
   return (
