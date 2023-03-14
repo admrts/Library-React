@@ -25,6 +25,7 @@ function Form() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setId(nanoid());
     if (updateBook) {
       setBookName(bookDetail[0].bookName);
       setAuthor(bookDetail[0].author);
@@ -35,7 +36,6 @@ function Form() {
   }, [updateBook, bookDetail]);
 
   const addClick = async () => {
-    setId(nanoid());
     const asd = await addBook(
       {
         bookName,

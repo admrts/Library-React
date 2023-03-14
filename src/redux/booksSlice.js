@@ -27,7 +27,7 @@ const books = createSlice({
     updateControl: (state, action) => {
       if (action.payload === "update") {
         state.updateBook = true;
-      } else if (action.payload === "addBook") {
+      } else if (action.payload === "addbook") {
         state.updateBook = false;
       }
     },
