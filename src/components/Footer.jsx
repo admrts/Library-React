@@ -20,7 +20,7 @@ function footer() {
       <Typography>
         {" "}
         Created by{" "}
-        <a href="https://github.com/admrt" style={{ color: "black" }}>
+        <a href="https://github.com/admrts" style={{ color: "black" }}>
           Ali
         </a>
       </Typography>
