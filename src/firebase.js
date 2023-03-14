@@ -6,7 +6,14 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import store from "./redux/store";
 import {
   login as loginHandle,
@@ -90,18 +97,22 @@ onAuthStateChanged(auth, (user) => {
 
 //! Firestore
 
-export const addBook = async (data) => {
+//  Create Data
+
+export const addBook = async (data, documentId) => {
   const collectionWithEmail = auth.currentUser.email;
   try {
-    const docRef = await addDoc(collection(db, collectionWithEmail), {
+    const docRef = await setDoc(doc(db, collectionWithEmail, documentId), {
       data,
     });
     toast.success("Add book Successfully");
     return docRef;
-  } catch (e) {
-    toast.error(e);
+  } catch (error) {
+    toast.error(error);
   }
 };
+
+// FETCH data
 
 export const getData = async (userEmail) => {
   const querySnapShot = await getDocs(collection(db, userEmail));
@@ -109,4 +120,16 @@ export const getData = async (userEmail) => {
   querySnapShot.forEach((doc) => {
     store.dispatch(appendBooks(doc.data().data));
   });
+};
+
+// delete data
+
+export const deleteData = async (id) => {
+  const collectionWithEmail = auth.currentUser.email;
+  try {
+    await deleteDoc(doc(db, collectionWithEmail, id));
+    toast.success("Deleted Book");
+  } catch (error) {
+    toast.error(error.message);
+  }
 };

@@ -3,6 +3,7 @@ import React from "react";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { deleteData } from "../firebase";
 
 function BookDetail() {
   const { bookDetail } = useSelector((store) => store.books);
@@ -11,6 +12,11 @@ function BookDetail() {
   const handleClick = () => {
     navigate("/");
     console.log(bookDetail);
+  };
+
+  const deleteClick = () => {
+    deleteData(bookDetail[0].id);
+    navigate("/");
   };
 
   return (
@@ -36,7 +42,9 @@ function BookDetail() {
           </Typography>
         </Stack>
         <Stack flexDirection="row" alignItems="center">
-          <Button color="error">Delete</Button>
+          <Button color="error" onClick={deleteClick}>
+            Delete
+          </Button>
           <Button color="success">Update</Button>
         </Stack>
       </Stack>

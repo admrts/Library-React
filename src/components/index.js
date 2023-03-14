@@ -8,4 +8,3 @@ export { default as ListHeader } from "./ListHeader";
 export { default as Addbook } from "./Addbook";
 export { default as AddBookForm } from "./AddBookForm/Form";
 export { default as BookDetail } from "./BookDetail";
-export { default as Loader } from "./Loader";

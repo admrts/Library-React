@@ -22,13 +22,17 @@ function Form() {
   const navigate = useNavigate();
 
   const addClick = async () => {
-    await addBook({
-      bookName,
-      author,
-      pages,
-      about,
-      id: nanoid(),
-    });
+    const id = nanoid();
+    await addBook(
+      {
+        bookName,
+        author,
+        pages,
+        about,
+        id,
+      },
+      id
+    );
   };
   const handleClick = () => {
     navigate("/");
