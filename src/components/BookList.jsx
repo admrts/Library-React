@@ -1,6 +1,6 @@
 import { Container, Typography, Button, Paper } from "@mui/material";
 import { useEffect } from "react";
-import { ListHeader, Loader } from "./";
+import { ListHeader } from "./";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../firebase";
@@ -24,7 +24,6 @@ function BookList() {
     getData(user.email);
   }, [user.email]);
 
-  if (books.length < 1) return <Loader />;
   return (
     <Container>
       <ListHeader />
