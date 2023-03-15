@@ -13,14 +13,14 @@ function Welcome() {
     navigate("signup");
   };
   return (
-    <Container sx={{ height: { xs: "60vh", md: "90vh" } }}>
+    <Container sx={{ height: { xs: "60vh", md: "50vh" } }}>
       <Stack
         alignItems="center"
         justifyContent="center"
         gap={4}
-        sx={{ height: "100%" }}
+        sx={{ height: "130%" }}
       >
-        <img src={Logo} alt="logo" width="50%" />
+        <img src={Logo} alt="logo" style={{ height: "50%" }} />
         <Typography variant="h3">Library</Typography>
         <Box sx={{ display: "flex", gap: "5px" }}>
           <CustomButton
