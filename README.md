@@ -1,4 +1,4 @@
-# Library - Firebase - React
+# Library - Firebase & React
 
 ### Usage Techs
 
