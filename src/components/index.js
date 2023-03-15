@@ -10,3 +10,4 @@ export { default as AddBookForm } from "./AddBookForm/Form";
 export { default as BookDetail } from "./BookDetail";
 export { default as Footer } from "./Footer";
 export { default as ProfilPage } from "./ProfilPage";
+export { default as CustomButton } from "./CustomButton";

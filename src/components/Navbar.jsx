@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Container, Stack, Button, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import Logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PersonIcon from "@mui/icons-material/Person";
 import { useDispatch } from "react-redux";
 import { updateProfilPage } from "../redux/booksSlice";
+import { CustomButton } from "./";
 
 function Navbar() {
   const { user } = useSelector((store) => store.auth);
@@ -62,12 +63,18 @@ function Navbar() {
           </Box>
         ) : (
           <Box sx={{ display: "flex", gap: "5px" }}>
-            <Button variant="outlined" onClick={loginClick}>
-              Log In
-            </Button>
-            <Button variant="contained" onClick={signupClick}>
-              Sign Up
-            </Button>
+            <CustomButton
+              variant={"outlined"}
+              onClick={loginClick}
+              color={"primary"}
+              buttonName={"Log In"}
+            />
+            <CustomButton
+              variant={"contained"}
+              onClick={signupClick}
+              color={"primary"}
+              buttonName={"Sign Up"}
+            />
           </Box>
         )}
       </Stack>

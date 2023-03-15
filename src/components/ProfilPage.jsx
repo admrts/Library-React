@@ -1,10 +1,11 @@
-import { Container, Typography, Stack, Button } from "@mui/material";
+import { Container, Typography, Stack } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../firebase";
 import { useDispatch } from "react-redux";
 import { logout as logoutHandle } from "../redux/authSlice";
 import { useSelector } from "react-redux";
+import { CustomButton } from "./";
 
 function ProfilPage() {
   const { totalBooks, totalPages } = useSelector((store) => store.books);
@@ -41,9 +42,12 @@ function ProfilPage() {
             Book List
           </Typography>
         </Stack>
-        <Button variant="contained" color="error" onClick={logoutClick}>
-          Log Out
-        </Button>
+        <CustomButton
+          variant={"contained"}
+          color={"error"}
+          onClick={logoutClick}
+          buttonName={"Log Out"}
+        />
       </Stack>
       <Stack flexDirection="row" justifyContent="center" mt={3}>
         <Stack alignItems="center">

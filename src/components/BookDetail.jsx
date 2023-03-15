@@ -1,4 +1,4 @@
-import { Container, Stack, Typography, Button } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import React from "react";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { deleteData } from "../firebase";
 import { useDispatch } from "react-redux";
 import { updateControl } from "../redux/booksSlice";
+import { CustomButton } from "./";
 
 function BookDetail() {
   const dispatch = useDispatch();
@@ -53,12 +54,18 @@ function BookDetail() {
           </Typography>
         </Stack>
         <Stack flexDirection="row" alignItems="center">
-          <Button color="error" onClick={deleteClick}>
-            Delete
-          </Button>
-          <Button color="success" onClick={updateClick}>
-            Update
-          </Button>
+          <CustomButton
+            color={"error"}
+            onClick={deleteClick}
+            variant={"text"}
+            buttonName={"Delete"}
+          />
+          <CustomButton
+            color={"success"}
+            onClick={updateClick}
+            variant={"text"}
+            buttonName={"Update"}
+          />
         </Stack>
       </Stack>
       <Stack flexDirection="row" justifyContent="center" mt={3}>
