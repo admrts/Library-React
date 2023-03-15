@@ -5,12 +5,12 @@ import { ListHeader, BookListItem } from "./";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../firebase";
 import { useSelector } from "react-redux";
-import { bookDetailById } from "../redux/booksSlice";
+import { bookDetailById, sorted } from "../redux/booksSlice";
 import { useDispatch } from "react-redux";
 
 function BookList() {
   const { user } = useSelector((store) => store.auth);
-  const { books } = useSelector((store) => store.books);
+  const { sortedBooks, books } = useSelector((store) => store.books);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = (e) => {
@@ -22,14 +22,15 @@ function BookList() {
 
   useEffect(() => {
     getData(user.email);
-  }, [user.email]);
+    dispatch(sorted());
+  }, [user.email, dispatch, books]);
 
   return (
     <Container sx={{ pb: 7 }}>
       <ListHeader />
 
-      {books.length > 0 ? (
-        books.map((book) => {
+      {sortedBooks.length > 0 ? (
+        sortedBooks.map((book) => {
           return (
             <BookListItem
               key={book.id}

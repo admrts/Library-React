@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   books: [],
+  sortedBooks: [],
   updateBook: false,
   bookDetail: [],
   totalBooks: 0,
@@ -17,6 +18,11 @@ const books = createSlice({
     },
     appendBooks: (state, action) => {
       state.books.push(action.payload);
+    },
+    sorted: (state) => {
+      state.sortedBooks = state.books.sort((a, b) =>
+        a.bookName > b.bookName ? 1 : a.bookName < b.bookName ? -1 : 0
+      );
     },
     setBookId: (state, action) => {
       state.bookId = action.payload;
@@ -51,5 +57,6 @@ export const {
   bookDetailById,
   updateControl,
   updateProfilPage,
+  sorted,
 } = books.actions;
 export default books.reducer;
