@@ -1,7 +1,7 @@
-import { Container, Typography, Button, Paper } from "@mui/material";
+import { Container } from "@mui/material";
 import { useEffect } from "react";
-import { ListHeader } from "./";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { ListHeader, BookListItem } from "./";
+
 import { useNavigate } from "react-router-dom";
 import { getData } from "../firebase";
 import { useSelector } from "react-redux";
@@ -31,51 +31,16 @@ function BookList() {
       {books.length > 0 ? (
         books.map((book) => {
           return (
-            <Paper
+            <BookListItem
               key={book.id}
-              id={book.id}
+              bookId={book.id}
               onClick={handleClick}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                my: 2,
-                p: 1,
-                cursor: "pointer",
-                borderRadius: "10px",
-                ":hover": {
-                  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-                },
-              }}
-            >
-              <Typography id={book.id} onClick={handleClick}>
-                {book.bookName}
-              </Typography>
-              <Button disabled>
-                <ArrowForwardIcon />
-              </Button>
-            </Paper>
+              bookName={book.bookName}
+            />
           );
         })
       ) : (
-        <Paper
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            my: 2,
-            p: 1,
-            cursor: "pointer",
-            borderRadius: "10px",
-            ":hover": {
-              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-            },
-          }}
-        >
-          <Typography>Book not found. Please add book</Typography>
-        </Paper>
+        <BookListItem bookName={"Book not found. Please add book"} />
       )}
     </Container>
   );
